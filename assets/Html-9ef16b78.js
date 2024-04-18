@@ -1,0 +1,38 @@
+import{r as n,e as pe,aR as ge,u as Me,_ as Pe,aj as be,V as H,au as Y,at as ee}from"./index-c609724e.js";const R=new H,I=new H,we=new H;function Se(e,t,s){const o=R.setFromMatrixPosition(e.matrixWorld);o.project(t);const i=s.width/2,a=s.height/2;return[o.x*i+i,-(o.y*a)+a]}function Ee(e,t){const s=R.setFromMatrixPosition(e.matrixWorld),o=I.setFromMatrixPosition(t.matrixWorld),i=s.sub(o),a=t.getWorldDirection(we);return i.angleTo(a)>Math.PI/2}function We(e,t,s,o){const i=R.setFromMatrixPosition(e.matrixWorld),a=i.clone();a.project(t),s.setFromCamera(a,t);const x=s.intersectObjects(o,!0);if(x.length){const b=x[0].distance;return i.distanceTo(s.ray.origin)<b}return!0}function je(e,t){if(t instanceof Y)return t.zoom;if(t instanceof ee){const s=R.setFromMatrixPosition(e.matrixWorld),o=I.setFromMatrixPosition(t.matrixWorld),i=t.fov*Math.PI/180,a=s.distanceTo(o);return 1/(2*Math.tan(i/2)*a)}else return 1}function Re(e,t,s){if(t instanceof ee||t instanceof Y){const o=R.setFromMatrixPosition(e.matrixWorld),i=I.setFromMatrixPosition(t.matrixWorld),a=o.distanceTo(i),x=(s[1]-s[0])/(t.far-t.near),b=s[1]-x*t.far;return Math.round(x*a+b)}}const k=e=>Math.abs(e)<1e-10?0:e;function te(e,t,s=""){let o="matrix3d(";for(let i=0;i!==16;i++)o+=k(t[i]*e.elements[i])+(i!==15?",":")");return s+o}const Ce=(e=>t=>te(t,e))([1,-1,1,1,1,-1,1,1,1,-1,1,1,1,-1,1,1]),$e=(e=>(t,s)=>te(t,e(s),"translate(-50%,-50%)"))(e=>[1/e,1/e,1/e,1,-1/e,-1/e,-1/e,-1,1/e,1/e,1/e,1,1,1,1,1]);function Oe(e){return e&&typeof e=="object"&&"current"in e}const Fe=n.forwardRef(({children:e,eps:t=.001,style:s,className:o,prepend:i,center:a,fullscreen:x,portal:b,distanceFactor:E,sprite:ne=!1,transform:m=!1,occlude:c,onOcclude:L,castShadow:re,receiveShadow:se,material:ie,geometry:N,zIndexRange:C=[16777271,0],calculatePosition:B=Se,as:oe="div",wrapperClass:z,pointerEvents:Z="auto",...v},_)=>{const{gl:G,camera:l,scene:q,size:f,raycaster:ae,events:ce,viewport:le}=pe(),[u]=n.useState(()=>document.createElement(oe)),A=n.useRef(),h=n.useRef(null),J=n.useRef(0),$=n.useRef([0,0]),W=n.useRef(null),V=n.useRef(null),w=(b==null?void 0:b.current)||ce.connected||G.domElement.parentNode,p=n.useRef(null),O=n.useRef(!1),T=n.useMemo(()=>c&&c!=="blending"||Array.isArray(c)&&c.length&&Oe(c[0]),[c]);n.useLayoutEffect(()=>{const d=G.domElement;c&&c==="blending"?(d.style.zIndex=`${Math.floor(C[0]/2)}`,d.style.position="absolute",d.style.pointerEvents="none"):(d.style.zIndex=null,d.style.position=null,d.style.pointerEvents=null)},[c]),n.useLayoutEffect(()=>{if(h.current){const d=A.current=ge(u);if(q.updateMatrixWorld(),m)u.style.cssText="position:absolute;top:0;left:0;pointer-events:none;overflow:hidden;";else{const r=B(h.current,l,f);u.style.cssText=`position:absolute;top:0;left:0;transform:translate3d(${r[0]}px,${r[1]}px,0);transform-origin:0 0;`}return w&&(i?w.prepend(u):w.appendChild(u)),()=>{w&&w.removeChild(u),d.unmount()}}},[w,m]),n.useLayoutEffect(()=>{z&&(u.className=z)},[z]);const K=n.useMemo(()=>m?{position:"absolute",top:0,left:0,width:f.width,height:f.height,transformStyle:"preserve-3d",pointerEvents:"none"}:{position:"absolute",transform:a?"translate3d(-50%,-50%,0)":"none",...x&&{top:-f.height/2,left:-f.width/2,width:f.width,height:f.height},...s},[s,a,x,f,m]),ue=n.useMemo(()=>({position:"absolute",pointerEvents:Z}),[Z]);n.useLayoutEffect(()=>{if(O.current=!1,m){var d;(d=A.current)==null||d.render(n.createElement("div",{ref:W,style:K},n.createElement("div",{ref:V,style:ue},n.createElement("div",{ref:_,className:o,style:s,children:e}))))}else{var r;(r=A.current)==null||r.render(n.createElement("div",{ref:_,style:K,className:o,children:e}))}});const S=n.useRef(!0);Me(d=>{if(h.current){l.updateMatrixWorld(),h.current.updateWorldMatrix(!0,!1);const r=m?$.current:B(h.current,l,f);if(m||Math.abs(J.current-l.zoom)>t||Math.abs($.current[0]-r[0])>t||Math.abs($.current[1]-r[1])>t){const g=Ee(h.current,l);let y=!1;T&&(Array.isArray(c)?y=c.map(M=>M.current):c!=="blending"&&(y=[q]));const j=S.current;if(y){const M=We(h.current,l,ae,y);S.current=M&&!g}else S.current=!g;j!==S.current&&(L?L(!S.current):u.style.display=S.current?"block":"none");const F=Math.floor(C[0]/2),fe=c?T?[C[0],F]:[F-1,0]:C;if(u.style.zIndex=`${Re(h.current,l,fe)}`,m){const[M,U]=[f.width/2,f.height/2],D=l.projectionMatrix.elements[5]*U,{isOrthographicCamera:X,top:de,left:he,bottom:me,right:xe}=l,ve=Ce(l.matrixWorldInverse),ye=X?`scale(${D})translate(${k(-(xe+he)/2)}px,${k((de+me)/2)}px)`:`translateZ(${D}px)`;let P=h.current.matrixWorld;ne&&(P=l.matrixWorldInverse.clone().transpose().copyPosition(P).scale(h.current.scale),P.elements[3]=P.elements[7]=P.elements[11]=0,P.elements[15]=1),u.style.width=f.width+"px",u.style.height=f.height+"px",u.style.perspective=X?"":`${D}px`,W.current&&V.current&&(W.current.style.transform=`${ye}${ve}translate(${M}px,${U}px)`,V.current.style.transform=$e(P,1/((E||10)/400)))}else{const M=E===void 0?1:je(h.current,l)*E;u.style.transform=`translate3d(${r[0]}px,${r[1]}px,0) scale(${M})`}$.current=r,J.current=l.zoom}}if(!T&&p.current&&!O.current)if(m){if(W.current){const r=W.current.children[0];if(r!=null&&r.clientWidth&&r!=null&&r.clientHeight){const{isOrthographicCamera:g}=l;if(g||N)v.scale&&(Array.isArray(v.scale)?v.scale instanceof H?p.current.scale.copy(v.scale.clone().divideScalar(1)):p.current.scale.set(1/v.scale[0],1/v.scale[1],1/v.scale[2]):p.current.scale.setScalar(1/v.scale));else{const y=(E||10)/400,j=r.clientWidth*y,F=r.clientHeight*y;p.current.scale.set(j,F,1)}O.current=!0}}}else{const r=u.children[0];if(r!=null&&r.clientWidth&&r!=null&&r.clientHeight){const g=1/le.factor,y=r.clientWidth*g,j=r.clientHeight*g;p.current.scale.set(y,j,1),O.current=!0}p.current.lookAt(d.camera.position)}});const Q=n.useMemo(()=>({vertexShader:m?void 0:`
+          /*
+            This shader is from the THREE's SpriteMaterial.
+            We need to turn the backing plane into a Sprite
+            (make it always face the camera) if "transfrom" 
+            is false. 
+          */
+          #include <common>
+
+          void main() {
+            vec2 center = vec2(0., 1.);
+            float rotation = 0.0;
+            
+            // This is somewhat arbitrary, but it seems to work well
+            // Need to figure out how to derive this dynamically if it even matters
+            float size = 0.03;
+
+            vec4 mvPosition = modelViewMatrix * vec4( 0.0, 0.0, 0.0, 1.0 );
+            vec2 scale;
+            scale.x = length( vec3( modelMatrix[ 0 ].x, modelMatrix[ 0 ].y, modelMatrix[ 0 ].z ) );
+            scale.y = length( vec3( modelMatrix[ 1 ].x, modelMatrix[ 1 ].y, modelMatrix[ 1 ].z ) );
+
+            bool isPerspective = isPerspectiveMatrix( projectionMatrix );
+            if ( isPerspective ) scale *= - mvPosition.z;
+
+            vec2 alignedPosition = ( position.xy - ( center - vec2( 0.5 ) ) ) * scale * size;
+            vec2 rotatedPosition;
+            rotatedPosition.x = cos( rotation ) * alignedPosition.x - sin( rotation ) * alignedPosition.y;
+            rotatedPosition.y = sin( rotation ) * alignedPosition.x + cos( rotation ) * alignedPosition.y;
+            mvPosition.xy += rotatedPosition;
+
+            gl_Position = projectionMatrix * mvPosition;
+          }
+      `,fragmentShader:`
+        void main() {
+          gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+        }
+      `}),[m]);return n.createElement("group",Pe({},v,{ref:h}),c&&!T&&n.createElement("mesh",{castShadow:re,receiveShadow:se,ref:p},N||n.createElement("planeGeometry",null),ie||n.createElement("shaderMaterial",{side:be,vertexShader:Q.vertexShader,fragmentShader:Q.fragmentShader})))});export{Fe as H};
