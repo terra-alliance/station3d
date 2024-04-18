@@ -1,4 +1,4 @@
-import{R as A,r as e,C as E,u as d,A as w,S as C,V as j,a as z,j as a}from"./index-4cbdb934.js";const F=()=>parseInt(A.replace(/\D+/g,"")),P=F();class _ extends C{constructor(){super({uniforms:{time:{value:0},fade:{value:1}},vertexShader:`
+import{R as A,r as e,C as E,u as d,A as w,S as C,V as j,a as z,j as a}from"./index-ef113196.js";const F=()=>parseInt(A.replace(/\D+/g,"")),P=F();class _ extends C{constructor(){super({uniforms:{time:{value:0},fade:{value:1}},vertexShader:`
       uniform float time;
       attribute float size;
       varying vec3 vColor;

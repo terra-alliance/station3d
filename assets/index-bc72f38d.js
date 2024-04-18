@@ -1,0 +1,1 @@
+import{r as t}from"./index-ef113196.js";function s(){const[i,n]=t.useState({width:null,height:null});return t.useLayoutEffect(()=>{const e=()=>{n({width:window.innerWidth,height:window.innerHeight})};return e(),window.addEventListener("resize",e),()=>{window.removeEventListener("resize",e)}},[]),i}export{s as u};
